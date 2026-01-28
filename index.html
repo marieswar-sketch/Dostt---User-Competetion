@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dostt Coins League</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="header">
+        <img src="logo.png" alt="Dostt Coins League Logo" class="logo" />
+        <h1>Dostt Coins League</h1>
+        <p class="campaign-dates">Competetion Date : 29 Jan – 1 Feb</p>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="reward-banner">
+                <div class="reward-icon">🎁</div>
+                <div class="reward-text">
+                    <h2>Surprise Gifts for Top Rank Holders</h2>
+                    <p>Top ranker wins <strong>Apple AirPods 4</strong></p>
+                    <span class="reward-sub">Limited‑time leaderboard competition.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="lookup">
+            <input type="text" id="mobileInput" placeholder="Enter Mobile Number" maxlength="10" />
+            <button id="lookupBtn">
+                <span class="btn-text">Check My Rank</span>
+                <span class="spinner hidden"></span>
+            </button>
+            <p id="errorMsg" class="error"></p>
+        </section>
+
+        <section id="resultSection" class="result hidden">
+            <div class="card rank-card">
+                <h3>Your Rank</h3>
+                <p id="rankValue" class="value"></p>
+            </div>
+            <div class="card coins-card">
+                <h3>Coins Utilized</h3>
+                <p id="coinsUtilized" class="value"></p>
+            </div>
+            <div class="card total-card">
+                <h3>Coins to go for Rank #1</h3>
+                <p id="totalCoins" class="value"></p>
+            </div>
+            <div id="motivation" class="motivation"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <img src="Dostt Logo.png" alt="Dostt Mini Logo" class="footer-logo-small" />
+            <a href="#" id="termsLink">Terms & Conditions</a>
+        </div>
+    </footer>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Terms & Conditions</h2>
+            <div id="termsBody">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
