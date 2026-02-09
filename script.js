@@ -1,5 +1,5 @@
 // script.js
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzkLPMLPEz-yE_U_spgFJXRHLhUvTYS-3QyiHJUEfzCcm1xdXxUVfYtuSHtVyAWk9x-Rg/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcuxh5nxffapeg_VjJ2yMYsZX2pciqTrP4n_V3mGGcpqZeU38YAQXTT4LIK55Ea9D9vQ/exec";
 
 // --- UI Utilities ---
 function showScreen(screenId) {
@@ -75,14 +75,18 @@ async function fetchLeaderboard(mobile) {
 }
 
 async function logUserLookup(entry) {
+  console.log("Attempting to log entry:", entry);
   try {
     const params = new URLSearchParams({
       action: 'log',
+      cb: Date.now(), // Cache buster
       ...entry
     });
-    await fetch(`${APPS_SCRIPT_URL}?${params.toString()}`, { method: "GET" });
+    const url = `${APPS_SCRIPT_URL}?${params.toString()}`;
+    const response = await fetch(url, { method: "GET" });
+    console.log("Log response status:", response.status);
   } catch (err) {
-    console.error("Log error:", err);
+    console.error("Log error details:", err);
   }
 }
 
@@ -140,7 +144,7 @@ async function handleLookup() {
     logUserLookup({
       timestamp: new Date().toISOString(),
       mobile: normalizedMobile,
-      coinsUtilized: userCoins,
+      coinsUtilized: row["exp coins utilised"],
       rank: row["exp rank"]
     });
 
