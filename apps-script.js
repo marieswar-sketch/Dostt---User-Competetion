@@ -147,7 +147,7 @@ function getTermsAndConditions() {
         return jsonResponse({
             terms: `Terms & Conditions
 
-Campaign Period: 29 Jan – 1 Feb 2026
+Campaign Period: 10 Feb – 14 Feb 2026
 
 1. Eligibility
    - This campaign is open to all registered Dostt users.

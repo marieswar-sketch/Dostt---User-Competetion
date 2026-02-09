@@ -1,7 +1,97 @@
-<div style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: #333;">
-    <h1 style="font-size: 3rem; margin-bottom: 10px;">The Competition is Over! 🏆</h1>
-    <p style="font-size: 1.5rem; color: #555;">Thank you to everyone who participated. ✨</p>
-    <div style="font-size: 4rem; margin: 20px 0;">🎉 🎈 🏁</div>
-    <p style="font-size: 1.1rem;">Stay tuned for the winner announcement coming soon!</p>
-    <a href="/" style="margin-top: 30px; text-decoration: none; color: #007bff; font-weight: bold;">Return Home →</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dostt Coins League</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Particle Container -->
+    <div id="particles-container"></div>
+
+    <!-- Login/Entry Screen -->
+    <div id="authScreen" class="screen active">
+        <div class="auth-card">
+            <img src="Dostt Logo.png" alt="Dostt Logo" class="main-logo" />
+            <h1>Dostt Coins League</h1>
+            <p class="subtitle">Enter your mobile to see your progress</p>
+
+            <div class="input-group">
+                <input type="text" id="mobileInput" placeholder="Mobile Number" maxlength="10" />
+                <button id="lookupBtn">
+                    <span class="btn-text">Check Progress</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </div>
+            <p id="errorMsg" class="error hidden"></p>
+
+            <div class="reward-hint">
+                <span>🎁 Top ranker wins Apple AirPods</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="screen">
+        <header class="dashboard-header">
+            <img src="Dostt Logo.png" alt="Dostt Logo" class="nav-logo" />
+            <div class="header-info">
+                <h2>Dostt Coins League</h2>
+                <p>10 Feb – 14 Feb</p>
+            </div>
+            <button id="logoutBtn" class="icon-btn">Logout</button>
+        </header>
+
+        <main class="dashboard-content">
+            <div class="stats-grid">
+                <div class="stat-card glass" id="rankCard">
+                    <span class="label">Current Rank</span>
+                    <div class="value-container">
+                        <span id="rankValue" class="value">--</span>
+                    </div>
+                </div>
+
+                <div class="stat-card glass highlight" id="coinsCard">
+                    <span class="label">Coins Utilized</span>
+                    <div class="value-container">
+                        <span id="coinsUtilized" class="value">--</span>
+                        <span class="unit">COINS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="motivation-banner glass">
+                <div class="gift-icon">🎧</div>
+                <div id="motivation" class="motivation-text">
+                    Keep spending coins to grab those <strong>Apple AirPods</strong>!
+                </div>
+            </div>
+        </main>
+
+        <footer class="dashboard-footer">
+            <a href="#" id="termsLink">Terms & Conditions</a>
+        </footer>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Terms & Conditions</h2>
+            <div id="termsBody">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
