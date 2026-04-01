@@ -77,16 +77,6 @@
         </footer>
     </div>
 
-    <div id="termsModal" class="modal hidden">
-        <div class="modal-content glass">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Terms & Conditions</h2>
-            <div id="termsBody">
-                <p>Loading...</p>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 
     <script>
@@ -95,21 +85,25 @@
         const iconObs = document.getElementById('giftIcon');
 
         const observer = new MutationObserver(() => {
-            const currentRank = parseInt(rankObs.innerText);
+            // Clean the text: Remove "#" and any spaces so we just get the number
+            let rawText = rankObs.innerText.replace('#', '').trim();
+            let currentRank = parseInt(rawText);
+            
+            if (isNaN(currentRank)) return;
+
             if (currentRank === 1) {
                 iconObs.innerText = "📱";
-                motivationObs.innerHTML = "You're Rank 1! Hold on to win the <strong>Nothing Phone</strong>!";
+                motivationObs.innerHTML = "You're Rank #1! Hold on to win the <strong>Nothing Phone</strong>!";
             } else if (currentRank === 2) {
                 iconObs.innerText = "🎧";
-                motivationObs.innerHTML = "Rank 2! You're in line for <strong>Apple AirPods 4</strong>. Go for Rank 1!";
-            } else if (currentRank > 2) {
+                motivationObs.innerHTML = "Rank #2! You're in line for <strong>Apple AirPods 4</strong>. Go for Rank 1!";
+            } else {
                 iconObs.innerText = "🚀";
-                motivationObs.innerHTML = "Keep spending coins to win the <strong>Nothing Phone</strong> or <strong>AirPods 4</strong>!";
+                motivationObs.innerHTML = "You're Rank #" + currentRank + "! Keep spending coins to grab <strong>Apple AirPods 4</strong>! 🎧";
             }
         });
 
         observer.observe(rankObs, { childList: true });
     </script>
 </body>
-
 </html>
