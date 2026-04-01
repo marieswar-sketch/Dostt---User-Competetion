@@ -13,10 +13,8 @@
 </head>
 
 <body>
-    <!-- Particle Container -->
     <div id="particles-container"></div>
 
-    <!-- Login/Entry Screen -->
     <div id="authScreen" class="screen active">
         <div class="auth-card">
             <img src="Dostt Logo.png" alt="Dostt Logo" class="main-logo" />
@@ -32,19 +30,19 @@
             </div>
             <p id="errorMsg" class="error hidden"></p>
 
-            <div class="reward-hint">
-                <span>🎁 Top ranker wins Apple AirPods</span>
+            <div class="reward-hint" style="margin-top: 20px; line-height: 1.6;">
+                <div style="color: #FFD700; font-weight: 700;">🏆 1st: Nothing Phone</div>
+                <div style="color: #C0C0C0; font-weight: 700;">🥈 2nd: Apple AirPods 4</div>
             </div>
         </div>
     </div>
 
-    <!-- Dashboard Screen -->
     <div id="dashboardScreen" class="screen">
         <header class="dashboard-header">
             <img src="Dostt Logo.png" alt="Dostt Logo" class="nav-logo" />
             <div class="header-info">
                 <h2>Dostt Coins League</h2>
-                <p>10 Feb – 14 Feb</p>
+                <p>2 Mar – 5 Mar</p>
             </div>
             <button id="logoutBtn" class="icon-btn">Logout</button>
         </header>
@@ -68,9 +66,9 @@
             </div>
 
             <div class="motivation-banner glass">
-                <div class="gift-icon">🎧</div>
+                <div class="gift-icon" id="giftIcon">🎁</div>
                 <div id="motivation" class="motivation-text">
-                    Keep spending coins to grab those <strong>Apple AirPods</strong>!
+                    Keep spending coins to climb the ranks!
                 </div>
             </div>
         </main>
@@ -80,18 +78,32 @@
         </footer>
     </div>
 
-    <!-- Terms Modal -->
-    <div id="termsModal" class="modal hidden">
-        <div class="modal-content glass">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Terms & Conditions</h2>
-            <div id="termsBody">
-                <p>Loading...</p>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
+
+    <script>
+        const rankSpan = document.getElementById('rankValue');
+        const motivationText = document.getElementById('motivation');
+        const giftIcon = document.getElementById('giftIcon');
+
+        // This "Observer" watches the Rank number for changes
+        const observer = new MutationObserver(() => {
+            const rank = parseInt(rankSpan.innerText);
+            if (isNaN(rank)) return;
+
+            if (rank === 1) {
+                giftIcon.innerHTML = "📱";
+                motivationText.innerHTML = "You're in the lead! Hold your rank for the <strong>Nothing Phone</strong>!";
+            } else if (rank === 2) {
+                giftIcon.innerHTML = "🎧";
+                motivationText.innerHTML = "Great job! You're currently winning the <strong>Apple AirPods 4</strong>. Push for Rank 1!";
+            } else {
+                giftIcon.innerHTML = "🚀";
+                motivationText.innerHTML = "Keep spending coins to climb the ranks for a <strong>Nothing Phone</strong> or <strong>AirPods 4</strong>!";
+            }
+        });
+
+        observer.observe(rankSpan, { childList: true });
+    </script>
 </body>
 
 </html>
