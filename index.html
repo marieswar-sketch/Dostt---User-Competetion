@@ -31,7 +31,8 @@
             <p id="errorMsg" class="error hidden"></p>
 
             <div class="reward-hint">
-                <span>🏆 1st: Nothing Phone | 🥈 2nd: AirPods 4</span>
+                <span style="display: block; margin-bottom: 5px;">📱 1st: Nothing Phone</span>
+                <span style="display: block;">🎧 2nd: Apple AirPods 4</span>
             </div>
         </div>
     </div>
@@ -67,7 +68,7 @@
             <div class="motivation-banner glass">
                 <div class="gift-icon" id="giftIcon">🎁</div>
                 <div id="motivation" class="motivation-text">
-                    Keep spending coins to grab the <strong>Nothing Phone</strong> or <strong>AirPods 4</strong>!
+                    Keep spending coins to win the <strong>Nothing Phone</strong>! 📱
                 </div>
             </div>
         </main>
@@ -85,25 +86,26 @@
         const iconObs = document.getElementById('giftIcon');
 
         const observer = new MutationObserver(() => {
-            // Clean the text: Remove "#" and any spaces so we just get the number
-            let rawText = rankObs.innerText.replace('#', '').trim();
-            let currentRank = parseInt(rawText);
+            // Clean the rank text (removes '#' or spaces)
+            let rawRank = rankObs.innerText.replace(/[^0-9]/g, '').trim();
+            let currentRank = parseInt(rawRank);
             
             if (isNaN(currentRank)) return;
 
             if (currentRank === 1) {
                 iconObs.innerText = "📱";
-                motivationObs.innerHTML = "You're Rank #1! Hold on to win the <strong>Nothing Phone</strong>!";
+                motivationObs.innerHTML = "You're Rank #1! Hold your spot for the <strong>Nothing Phone</strong>! 📱";
             } else if (currentRank === 2) {
                 iconObs.innerText = "🎧";
-                motivationObs.innerHTML = "Rank #2! You're in line for <strong>Apple AirPods 4</strong>. Go for Rank 1!";
+                motivationObs.innerHTML = "You're Rank #2! You're winning the <strong>Apple AirPods 4</strong>! Push for Rank 1! 🎧";
             } else {
                 iconObs.innerText = "🚀";
-                motivationObs.innerHTML = "You're Rank #" + currentRank + "! Keep spending coins to grab <strong>Apple AirPods 4</strong>! 🎧";
+                motivationObs.innerHTML = "You're Rank #" + currentRank + "! Keep spending coins to grab those <strong>Apple AirPods 4</strong>! 🎧 &<strong>Nothing Phone</strong>! 📱";
             }
         });
 
-        observer.observe(rankObs, { childList: true });
+        // Watch the rankValue for any changes made by script.js
+        observer.observe(rankObs, { childList: true, characterData: true, subtree: true });
     </script>
 </body>
 </html>
